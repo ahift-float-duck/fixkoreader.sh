@@ -80,6 +80,31 @@ KOReader install which ended up buried somewhere under
 - Does nothing if `/mnt/us/koreader` already exists - it won't overwrite
   or touch an existing install.
 
+## Scriptlet metadata (why the header comments matter)
+
+SH_Integration reads a small set of `#`-prefixed header lines at the top
+of the script to control how it shows up in the library and runs:
+
+- `# Name: <title>` - the book title shown in the library. Without this
+  the book would just be titled after the raw filename.
+- `# Author: <name>` - the author metadata shown alongside it.
+- `# Icon: <path>` - optional custom cover icon (not used here).
+- `# UseHooks` - opts into lifecycle hook functions instead of running
+  top-to-bottom (not used here - this script is a simple linear run).
+- `# DontUseFBInk` - opts out of the default behavior, which is to pipe
+  the script's stdout to the e-ink screen live via FBInk. This script
+  relies on the default (FBInk on) for its on-screen progress output.
+
+If you're adapting this script or writing your own scriptlet, keep the
+`# Name:`/`# Author:` lines as the first two comment lines after the
+shebang - that's the convention SH_Integration expects.
+
+## Contributing
+
+Issues and PRs welcome. Keep changes POSIX `sh` (no bashisms - the
+on-device shell is busybox ash) and run `shellcheck -s sh fixkoreader.sh`
+before submitting; CI runs the same check on every push and PR.
+
 ## Getting a terminal without KOReader
 
 KOReader's own Terminal plugin is the usual way people get an

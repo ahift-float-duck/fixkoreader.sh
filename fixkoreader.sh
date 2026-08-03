@@ -1,4 +1,7 @@
 #!/bin/sh
+# Name: Fix KOReader
+# Author: fixkoreader.sh contributors
+#
 # fixkoreader.sh - relocate a misplaced KOReader install back to /mnt/us/koreader
 #
 # Symptom this fixes: KOReader got unzipped somewhere under
@@ -7,8 +10,10 @@
 #
 # Safe by design: if /mnt/us/koreader already exists, this does nothing.
 #
-# Run via KUAL's SH_Integration ("Run Hotfix" style scriptlet) - drop this
-# file in /mnt/us/documents and tap it from the Kindle library.
+# Run via KUAL's SH_Integration - drop this file in /mnt/us/documents and
+# it appears in the Kindle library as a book titled "Fix KOReader" (from
+# the Name: header above). Tap it to run; SH_Integration pipes stdout to
+# the screen via FBInk automatically.
 
 TARGET="/mnt/us/koreader"
 SEARCH_ROOT="/mnt/us/documents"
